@@ -1,0 +1,142 @@
+import { Guild, GuildMember, Message, TextChannel } from 'discord.js';
+
+import DiscordClient from '../structures/Client';
+import { formatSeconds, isUserDeveloper } from '../utils/functions';
+
+export default class CommandHandler {
+    /**
+     * Handles the commands.
+     * @param message Message object
+     */
+    static async handleCommand(client: DiscordClient, message: Message) {
+        const self = (message.guild as Guild).me as GuildMember;
+        if (!self.permissions.has('SEND_MESSAGES') || !(message.channel as TextChannel).permissionsFor(self)?.has('SEND_MESSAGES')) return;
+        if (!self.permissions.has('ADMINISTRATOR'))
+            return await message.channel.send({
+                embeds: [
+                    {
+                        color: 'RED',
+                        title: '🚨 Missing Permission',
+                        description: `${message.author}, bot requires \`ADMINISTRATOR\` permission to be run.`
+                    }
+                ]
+            });
+        
+        const prefix = client.config.prefix;
+        const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const prefixReg = new RegExp(`^(<@!?${client.user!.id}>|${escapeRegex(prefix)})\\s*`)
+        if (!prefixReg.test(message.content)) return;
+        const [ macthPrefix ]: any = message.content.match(prefixReg);
+        if (message.content.toLocaleLowerCase().indexOf(macthPrefix) !== 0) return;
+        const args = message.content.slice(macthPrefix.length).trim().split(/ +/g);
+        const command = (args.shift() as string).toLowerCase();
+        const cmd = client.registery.findCommand(command);
+        if (!cmd) {
+            if (client.config.unknownErrorMessage)
+                await message.channel.send({
+                    embeds: [
+                        {
+                            color: '#D1D1D1',
+                            title: '🔎 Unknown Command',
+                            description: `${message.author}, type \`${client.config.prefix}help\` to see the command list.`
+                        }
+                    ]
+                });
+            return;
+        }
+
+        if (cmd.info.enabled === false) return;
+        if (cmd.info.onlyNsfw === true && !(message.channel as TextChannel).nsfw && !isUserDeveloper(client, message.author.id))
+            return await message.channel.send({
+                embeds: [
+                    {
+                        color: '#EEB4D5',
+                        title: '🔞 Be Careful',
+                        description: `${message.author}, you can't use this command on non-nsfw channels.`
+                    }
+                ]
+            });
+
+        if (cmd.info.require) {
+            if (cmd.info.require.developer && !isUserDeveloper(client, message.author.id)) return;
+            if (cmd.info.require.permissions && !isUserDeveloper(client, message.author.id)) {
+                const perms: string[] = [];
+                cmd.info.require.permissions.forEach((permission: any) => {
+                    if ((message.member as GuildMember).permissions.has(permission)) return;
+                    else return perms.push(`\`${permission}\``);
+                });
+                if (perms.length)
+                    return await message.channel.send({
+                        embeds: [
+                            {
+                                color: '#FCE100',
+                                title: '⚠️ Missing Permissions',
+                                description: `${message.author}, you must have these permissions to run this command.\n\n${perms.join('\n')}`
+                            }
+                        ]
+                    });
+            }
+        }
+
+        if (cmd.info.args && !args.length) {
+            let reply = `You didn't provide any arguments, ${message.author}`;
+
+            if (cmd.info.usage) {
+                reply += `\nUsage: \`${prefix}${cmd.info.name} ${cmd.info.usage}\``;
+            };
+            return await message.channel.send({
+                embeds: [{
+                    color: '#FCE100',
+                    title: '⚠️ Missing Arguments',
+                    description: reply
+                }]
+            });
+        }
+
+        var addCooldown = false;
+
+        const now = Date.now();
+        const timestamps = client.registery.getCooldownTimestamps(cmd.info.name);
+        const cooldownAmount = cmd.info.cooldown ? cmd.info.cooldown * 1000 : 0;
+        if (cmd.info.cooldown) {
+            if (timestamps.has(message.author.id)) {
+                const currentTime = timestamps.get(message.author.id);
+                if (!currentTime) return;
+
+                const expirationTime = currentTime + cooldownAmount;
+                if (now < expirationTime) {
+                    await message.delete();
+                    const timeLeft = (expirationTime - now) / 1000;
+                    return await message.channel
+                        .send({
+                            embeds: [
+                                {
+                                    color: 'ORANGE',
+                                    title: '⏰ Calm Down',
+                                    description: `${message.author}, you must wait \`${formatSeconds(Math.floor(timeLeft))}\` to run this command.`
+                                }
+                            ]
+                        })
+                        .then(msg => setTimeout(async () => await msg.delete().catch(() => {}), 3000));
+                }
+            }
+
+            addCooldown = true;
+        }
+
+        try {
+            var applyCooldown = true;
+
+            await cmd.run(message, args, () => {
+                applyCooldown = false;
+            });
+
+            if (addCooldown && applyCooldown && !isUserDeveloper(client, message.author.id)) {
+                timestamps.set(message.author.id, now);
+                setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+            }
+        } catch (error) {
+            await cmd.onError(message, error);
+        }
+    }
+}

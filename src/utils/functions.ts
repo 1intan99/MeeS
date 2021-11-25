@@ -57,7 +57,10 @@ export function formatSeconds(seconds: number, format: string = 'Y [year] M [mon
     });
     return newStr.trim();
 }
-
+/**
+ * Formats duration for music player
+ * @param duration Miliseconds
+ */
 export function convertTime(duration: number): number | unknown {
 
     let milliseconds = parseInt((duration as any % 1000 as any) / 100 as any)
@@ -75,6 +78,12 @@ export function convertTime(duration: number): number | unknown {
         return hours + ":" + minutes + ":" + seconds ;
     }
 }
+
+/**
+ * Music Button To Control the music
+ * @param client MeeS Client
+ * @param guild Guild Id of the music player
+ */
 
 export async function button(client: MeeS, guild: string) {
     const player = client.manager?.players.get(guild);
@@ -126,6 +135,12 @@ export async function button(client: MeeS, guild: string) {
     return [row1, row2];
 }
 
+/**
+ * Queue System of Music Player
+ * @param interaction Discord Command Interaction
+ * @param client MeeS Discord Client
+ * @returns 
+ */
 export async function queue(interaction: CommandInteraction, client: MeeS) {
     try {
         const player = client.manager?.players.get(interaction.guildId as string);
@@ -246,6 +261,15 @@ export async function queue(interaction: CommandInteraction, client: MeeS) {
     }
 }
 
+/**
+ * Create Music Progress Bar
+ * @param total Number of player
+ * @param current Number of player position
+ * @param size Number of queue size
+ * @param line Progress Bar line
+ * @param slider Progress Bar slider
+ * @returns 
+ */
 export function progressBar(total: number, current: number, size: number, line: string, slider: string) {
     if (current > total) {
         const bar = line.repeat(size + 2);
@@ -261,6 +285,12 @@ export function progressBar(total: number, current: number, size: number, line: 
     }
 }
 
+/**
+ * Kitsu.io API's wrapper
+ * @param search Anime Title
+ * @param maxResult Max Result of anime
+ * @returns 
+ */
 export function serachAnime(search: string, maxResult = "max" as any) {
     const kitsu = request.defaults({
         baseUrl: `https://kitsu.io/api/edge`,
@@ -294,6 +324,11 @@ export function serachAnime(search: string, maxResult = "max" as any) {
     });
 }
 
+/**
+ * Create Select Menu for Help Command.
+ * @param array Array of command list
+ * @returns 
+ */
 export function createMenu(array: string[]) {
     if (!array) Logger.log(`ERROR`, "The options were not provided! Make sure you provide all the options!");
     if (array.length < 0) Logger.log(`ERROR`, `The array has to have atleast one thing to select!`);

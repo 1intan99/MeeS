@@ -1,6 +1,6 @@
 {
   "name": "mees-dev",
-  "version": "beta",
+  "version": "1.0.0",
   "description": "MeeS Canary",
   "main": "index.js",
   "license": "MIT",

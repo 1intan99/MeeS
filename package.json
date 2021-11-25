@@ -57,5 +57,6 @@
     "name": "Nao",
     "email": "contact@kiara.my.id",
     "url": "https://kiara.pw"
-  }
+  },
+  "private": "true"
 }

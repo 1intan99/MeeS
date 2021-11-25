@@ -1,20 +1,11 @@
-# MeeS Discord Bot
-[![Version][version-shield]](version-url)
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![GPL-3.0 License][license-shield]][license-url]
-
-
+<h1 align="center">MeeS Discord Bot</h1>
 <br />
 <p align="center">
     <a href="https://github.com/ameliakiara/MeeS">
         <img src="https://cdn.discordapp.com/attachments/891235330735366164/891387071376269342/amelia_corp.png" alt="Amelia-Corp" width="200" height="200">
     </a>
-    <h3 align="center">Mees Discord Bot</h3>
     <p align="center">
-        Mees is a powerful bot build with Discord.JS and Discord-TS
+        MeeS is a powerful bot build with Discord.JS and Discord-TS
         <br />
         <br />
         <a href="https://discord.com/api/oauth2/authorize?client_id=904209927415930950&permissions=8&scope=applications.commands%20bot">Invite me!</a>
@@ -190,8 +181,14 @@ If you want to cancel adding command cooldown to user:
 -   Build using 
     - [Discord.JS](https://discord.js.org) and  [Discord-Ts](http://discord-ts.js.org)
 
+[![Version][version-shield]](version-url)
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![GPL-3.0 License][license-shield]][license-url]
 
-Distributed under the GPL-3.9 License. See [`LICENSE`](https://github.com/ameliakiara/MeeS/blob/master/LICENSE) for more information.
+Distributed under the GPL-3.0 License. See [`LICENSE`](https://github.com/ameliakiara/MeeS/blob/master/LICENSE) for more information.
 
 [version-shield]: https://img.shields.io/github/package-json/v/ameliakiara/MeeS?style=for-the-badge
 [version-url]: https://github.com/ameliakiara/MeeS

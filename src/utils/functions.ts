@@ -1,5 +1,5 @@
 import { Pagination, PaginationResolver } from '@discordx/utilities';
-import { CommandInteraction, Message, MessageActionRow, MessageButton, MessageComponentInteraction, MessageEmbed } from 'discord.js';
+import { CommandInteraction, Message, MessageActionRow, MessageButton, MessageComponentInteraction, MessageEmbed, MessageSelectMenu } from 'discord.js';
 import 'moment-duration-format';
 
 import moment from 'moment-timezone';
@@ -10,6 +10,7 @@ import load from 'lodash';
 
 import DiscordClient from '../structures/Client';
 import { title } from 'process';
+import Logger from '../classes/Logger';
 
 const isConstructorProxyHandler = {
     construct() {
@@ -291,4 +292,39 @@ export function serachAnime(search: string, maxResult = "max" as any) {
             resolve(cb());
         });
     });
+}
+
+export function createMenu(array: string[]) {
+    if (!array) Logger.log(`ERROR`, "The options were not provided! Make sure you provide all the options!");
+    if (array.length < 0) Logger.log(`ERROR`, `The array has to have atleast one thing to select!`);
+
+    let select_menu;
+    const id = "menu-help";
+    const menus = [] as any;
+
+    array.forEach((x) => {
+        const name = x;
+        const sName = `${name.toUpperCase()}`;
+        const tName = name.toLowerCase();
+        const fName = name.toUpperCase();
+
+        return menus.push({
+            label: sName,
+            description: `${tName} commands!`,
+            value: fName
+        });
+    });
+
+    const embed = new MessageSelectMenu()
+    .setCustomId(id)
+    .setPlaceholder(`Choose the command category`)
+    .addOptions(menus)
+
+    select_menu = new MessageActionRow()
+    .addComponents(embed);
+
+    return {
+        smenu: [select_menu],
+        sid: id
+    }
 }

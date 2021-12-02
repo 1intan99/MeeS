@@ -9,7 +9,8 @@
     "build": "npm run clean && tsc -p .",
     "start": "node -r dotenv ./build/index.js",
     "dev": "nodemon -w ./src -w ./.env ./src/index.ts",
-    "starto": "node ./dist/index.js"
+    "postinstall": "tsc",
+    "starto": "cross-env NODE_ENV=production node dist/index.js"
   },
   "engines": {
     "node": "16.x"

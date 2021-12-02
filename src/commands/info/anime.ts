@@ -13,7 +13,8 @@ export default class Anime extends Command {
             name: 'anime',
             description: 'Search anime',
             group: 'Info',
-            cooldown: 5
+            cooldown: 5,
+            examples: ["anime Kimi No Nawa<Tittle>"]
         })
     }
 

@@ -8,7 +8,9 @@ export default class GiveawayReroll extends Command {
             name: "giveawayreroll",
             aliases: ["gr", "reroll"],
             description: "Reroll the giveaways",
-            group: "Giveaways"
+            group: "Giveaways",
+            examples: ['giveawayreroll 12345678<MessageID>'],
+            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]}
         });
     }
 

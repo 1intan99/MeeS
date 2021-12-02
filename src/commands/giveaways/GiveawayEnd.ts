@@ -8,7 +8,9 @@ export default class GiveawayEnd extends Command {
             name: 'giveawayend',
             aliases: ["gn", "gend"],
             description: "End the Giveaways",
-            group: "Giveaways"
+            group: "Giveaways",
+            examples: ['giveawayend 12345678<MessageID>'],
+            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]}
         });
     }
 

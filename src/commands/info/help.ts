@@ -17,7 +17,8 @@ export default class HelpCommand extends Command {
             name: 'help',
             group: 'Info',
             description: 'Shows information about commands and groups.',
-            cooldown: 30
+            cooldown: 30,
+            examples: ['help filter<Command Name>']
         });
     }
 
@@ -50,7 +51,8 @@ export default class HelpCommand extends Command {
             title: 'Help',
             footer: {
                 text: `Type "${this.client.config.prefix}help [command-name]" for more information.`
-            }
+            },
+            description: "✨Note: `Some command need permission to be show, like Giveaway Command and More`"
         });
         
         groups.forEach(group => {

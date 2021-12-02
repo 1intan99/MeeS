@@ -7,7 +7,8 @@ export default class Stop extends Command {
         super(client, {
             name: 'stop',
             description: 'Stop the music',
-            group: 'Music'
+            group: 'Music',
+            examples: ['stop']
         });
     }
 

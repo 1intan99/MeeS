@@ -7,7 +7,8 @@ export default class Pause extends Command {
         super(client, {
             name: 'pause',
             description: 'Pause the music',
-            group: 'Music'
+            group: 'Music',
+            examples: ['pause']
         });
     }
 

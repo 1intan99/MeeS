@@ -7,10 +7,11 @@ export default class Filter extends Command {
         super(client, {
             name: 'filter',
             aliases: ['eq', 'equalizer'],
-            description: 'Set Music Equalizer',
+            description: 'Set Music Equalizer\nAvailable Filter: (party, bass, radio, pop, trablebass, soft, custom, off)',
             group: 'Music',
             usage: '<Party || Bass || Radio || Pop || Trablebass || Soft || Custom || Off>',
             args: true,
+            examples: ['filter bass<Filter Name>']
         })
     }
     async run(message: Message, args: string[]) {

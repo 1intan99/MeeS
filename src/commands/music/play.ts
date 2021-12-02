@@ -13,7 +13,8 @@ export default class Play extends Command {
             name: 'play',
             aliases: ['p'],
             cooldown: 30,
-            group: 'Music'
+            group: 'Music',
+            examples: ['play Tile/URL<Input Title Or Music URL>']
         });
     }
 

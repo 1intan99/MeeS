@@ -7,7 +7,8 @@ export default class Resume extends Command {
         super(client, {
             name: 'resume',
             description: 'Resume the music',
-            group: 'Music'
+            group: 'Music',
+            examples: ['resume']
         });
     }
 

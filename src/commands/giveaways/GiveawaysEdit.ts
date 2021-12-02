@@ -8,7 +8,9 @@ export default class GiveawayEdit extends Command {
             name: "giveawayedit",
             aliases: ["ge", "edit"],
             description: "Edit The Giveaways",
-            group: "Giveaways"
+            group: "Giveaways",
+            examples: ["giveawayedit 12345678<messageId> 2<Winners> Nitro Classic<Prize>"],
+            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]}
         });
     }
 

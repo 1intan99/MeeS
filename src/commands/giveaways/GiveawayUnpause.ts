@@ -8,7 +8,9 @@ export default class GiveaawayUnPause extends Command {
             name: "giveawayunpause",
             aliases: ["gup", "gunpause"],
             description: "UnPause the Giveaways",
-            group: "Giveaways"
+            group: "Giveaways",
+            examples: ["giveawayunpause 12345678<MessageID>"],
+            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]}
         });
     }
 

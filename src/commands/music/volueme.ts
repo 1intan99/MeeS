@@ -7,7 +7,8 @@ export default class Volume extends Command {
         super(client, {
             name: 'volume',
             aliases: ['vol'],
-            group: 'Music'
+            group: 'Music',
+            examples: ['volume 10<Number ( Max Volume 200)>']
         });
     }
 

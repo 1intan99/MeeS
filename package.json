@@ -8,7 +8,8 @@
     "clean": "rimraf dist",
     "build": "npm run clean && tsc -p .",
     "start": "node -r dotenv ./build/index.js",
-    "dev": "nodemon -w ./src -w ./.env ./src/index.ts"
+    "dev": "nodemon -w ./src -w ./.env ./src/index.ts",
+    "starto": "node ./dist/index.js"
   },
   "engines": {
     "node": "16.x"

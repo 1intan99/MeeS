@@ -7,7 +7,6 @@ import MeeS from '../../../structures/Client';
 import { convertTime } from '../../../utils/functions';
 
 @Discord()
-@SlashGroup("music")
     export class music {
         @Slash("play", { description: 'Play a song'})
             async play(@SlashOption("name", { description: 'song', required: true}) songName: string, interaction: CommandInteraction, client: MeeS): Promise<void> {
@@ -147,5 +146,69 @@ import { convertTime } from '../../../utils/functions';
                 } catch (err) {
                     console.log(err);
                 }
+        }
+    @Slash("pause")
+        async pause(interaction: CommandInteraction, client: MeeS): Promise<void> {
+            if(!(interaction.member instanceof GuildMember) || !interaction.member.voice.channel) {
+                interaction.editReply({ content: "You're not in voice channel!" });
+                return;
+            }
+
+            const player = client.manager?.players.get(interaction.guildId)
+
+            if (!player) {
+                interaction.reply("Ther'e is no music playing at this server");
+
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 5000);
+            }
+
+            if (player?.paused) {
+                interaction.reply("Music already paused!");
+
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 5000);
+            }
+
+            player?.pause(!player.paused);
+            interaction.reply("Music has been paused!");
+
+            setTimeout(() => {
+                interaction.deleteReply();
+            }, 5000);
+        }
+    @Slash("resume")
+        async resume(interaction: CommandInteraction, client: MeeS) {
+            if (!(interaction.member instanceof GuildMember) || !interaction.member.voice.channel) {
+                return interaction.reply("You're not in voice channel!");
+            }
+
+            const player = client.manager?.players.get(interaction.guildId);
+
+            if (!player) {
+                interaction.reply("Ther'e is no music playing at this server");
+
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 5000);
+            }
+
+            if (!player?.paused) {
+                interaction.reply("Music already resumed!");
+
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 5000);
+            }
+
+            player?.pause(!player.paused);
+            
+            interaction.reply("Music has been resumed!");
+            
+            setTimeout(() => {
+                interaction.deleteReply();
+            }, 5000);
         }
     }

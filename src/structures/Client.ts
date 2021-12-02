@@ -8,6 +8,8 @@ import Registry from "../classes/Registery";
 import Erela from "../classes/Lavalink";
 import { Manager } from "erela.js";
 import Logger from "../classes/Logger";
+import MongoDB from "./MongoClien";
+import Giveaways from "../classes/GiveawaysModel";
 
 export default class MeeS extends Client {
     readonly config: IConfig;
@@ -18,6 +20,9 @@ export default class MeeS extends Client {
     public together: DiscordTogether<{[x: string]: string}>;
     public lavasfy: LavasfyClient | undefined;
     public log: Logger | undefined;
+    public giveaway: Giveaways;
+    public mongo: MongoDB;
+    public readonly logo: string;
 
     public constructor(intents: IntentsString[], silent: boolean) {
         super({ intents, botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)], silent})
@@ -28,11 +33,21 @@ export default class MeeS extends Client {
             developers: JSON.parse(process.env.DEVELOPERS as string) as string[],
             unknownErrorMessage: JSON.parse(process.env.UNKNOWN_COMMAND_ERROR as string)
         };
+        this.giveaway = new Giveaways(this, {
+            default: {
+                botsCanWin: false,
+                embedColor: 'GREEN',
+                embedColorEnd: 'RED',
+                reaction: '🎊'
+            }
+        });
         this.erela = new Erela(this);
         this.erela.connect();
         this.registery = new Registry(this);
         this.registery.reregisterAll();
         this.cache = new Map();
         this.together = new DiscordTogether(this);
+        this.mongo = new MongoDB();
+        this.logo = "https://cdn.discordapp.com/attachments/891235330735366164/891387071376269342/amelia_corp.png";
     }
 }

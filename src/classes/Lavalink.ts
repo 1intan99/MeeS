@@ -28,9 +28,9 @@ export default class Lavalink {
             }, [
                 {
                     id: 'KiaraLavalink',
-                    host: 'lava.kiara.my.id',
+                    host: process.env.HOST as string,
                     port: 443,
-                    password: 'doggystyle12',
+                    password: process.env.PASSWORD as string,
                     secure: true 
             }
         ]);
@@ -44,9 +44,9 @@ export default class Lavalink {
             nodes: [
                 {
                     identifier: 'Kiara Lavalink',
-                    host: 'lava.kiara.my.id',
+                    host: process.env.HOST as string,
                     port: 443,
-                    password: 'doggystyle12',
+                    password: process.env.PASSWORD as string,
                     secure: true
                 }
             ],

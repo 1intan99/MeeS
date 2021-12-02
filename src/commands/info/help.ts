@@ -25,7 +25,7 @@ export default class HelpCommand extends Command {
         const registry = this.client.registery;
         const groupKeys = registry.getAllGroupNames();
         const groups: IGroup[] = [];
-        const emo = { Info: "📃", Music: "🎵", Developer: "👑", Utility: "✨"} as any
+        const emo = { Info: "📃", Music: "🎵", Developer: "👑", Utility: "✨", Giveaways: "🎉"} as any
 
         groupKeys.forEach(group => {
             const commandsInGroup = registry.findCommandsInGroup(group) as string[];

@@ -10,6 +10,9 @@
     "start": "node -r dotenv ./build/index.js",
     "dev": "nodemon -w ./src -w ./.env ./src/index.ts"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@discordx/utilities": "^3.1.5",
     "canvas": "^2.8.0",
@@ -17,6 +20,7 @@
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.10",
     "delay": "^5.0.0",
+    "discord-giveaways": "^5.0.1",
     "discord-together": "^1.3.25",
     "discord.js": "^13.3.1",
     "discordx": "^9.0.1",
@@ -24,22 +28,36 @@
     "erela.js-apple": "^1.2.6",
     "erela.js-deezer": "^1.0.7",
     "erela.js-facebook": "^1.0.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "format": "^0.2.2",
+    "jsoning": "^0.12.22",
     "lavasfy": "^2.3.0",
     "lodash": "^4.17.21",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.34",
+    "mongoose": "^6.0.13",
+    "ms": "^2.1.3",
+    "passport": "^0.5.0",
+    "passport-discord": "^0.1.4",
+    "pretty-ms": "^7.0.1",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.2",
     "require-all": "^3.0.0",
     "skia-canvas": "^0.9.27",
     "snekfetch": "^4.0.4",
+    "socket.io": "^4.4.0",
     "superagent": "^6.1.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/express-session": "^1.17.4",
     "@types/lodash": "^4.14.177",
     "@types/moment-duration-format": "^2.2.3",
+    "@types/ms": "^0.7.31",
     "@types/node": "^16.11.10",
+    "@types/passport": "^1.0.7",
+    "@types/passport-discord": "^0.1.5",
     "@types/request": "^2.48.7",
     "@types/require-all": "^3.0.3",
     "@types/snekfetch": "^4.0.3",
@@ -50,13 +68,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ameliakiara/MeeS.git"
+    "url": "git+https://github.com/ameliakiara/MeeS.git"
   },
-  "keywords": ["Discord Music", "Music Discord", "Anime", "Manga"],
+  "keywords": [
+    "Discord Music",
+    "Music Discord",
+    "Anime",
+    "Manga"
+  ],
   "author": {
     "name": "Nao",
     "email": "contact@kiara.my.id",
     "url": "https://kiara.pw"
   },
-  "private": "true"
+  "homepage": "https://github.com/ameliakiara/MeeS#readme",
+  "bugs": {
+    "url": "https://github.com/ameliakiara/MeeS/issues",
+    "email": "contact@kiara.my.id"
+  }
 }

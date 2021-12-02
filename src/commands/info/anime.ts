@@ -5,7 +5,6 @@ import { registerFont } from "canvas";
 import { Canvas, resolveImage } from "canvas-constructor/cairo";
 import { get } from "superagent";
 import { serachAnime } from "../../utils/functions";
-import { join } from "path";
 
 
 export default class Anime extends Command {

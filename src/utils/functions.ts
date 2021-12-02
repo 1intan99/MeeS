@@ -1,15 +1,12 @@
-import { Pagination, PaginationResolver } from '@discordx/utilities';
 import { CommandInteraction, Message, MessageActionRow, MessageButton, MessageComponentInteraction, MessageEmbed, MessageSelectMenu } from 'discord.js';
 import 'moment-duration-format';
 
 import moment from 'moment-timezone';
-import { options, search } from 'snekfetch';
 import MeeS from '../structures/Client';
 import request from 'request';
 import load from 'lodash';
 
 import DiscordClient from '../structures/Client';
-import { title } from 'process';
 import Logger from '../classes/Logger';
 
 const isConstructorProxyHandler = {
@@ -97,7 +94,7 @@ export async function button(client: MeeS, guild: string) {
     .setStyle(`PRIMARY`)
     .setCustomId(`btn-pause`)
     const stopButton = new MessageButton()
-    .setLabel('✖️')
+    .setLabel('⏹️')
     .setStyle("DANGER")
     .setCustomId("btn-leave");
     const repeatButton = new MessageButton()
@@ -244,7 +241,9 @@ export async function queue(interaction: CommandInteraction, client: MeeS) {
                         await msg?.edit({
                             embeds: [embed],
                             components: [row1]
-                        }).catch(() => {});
+                        }).catch((err) => {
+                            Logger.log("ERROR", `There is some error: ${err.stack}`)
+                        });
                     } else if (button.customId === "btn-end") {
                         await button.deferUpdate().catch(() => {});
                         collector.stop();
@@ -270,19 +269,17 @@ export async function queue(interaction: CommandInteraction, client: MeeS) {
  * @param slider Progress Bar slider
  * @returns 
  */
-export function progressBar(total: number, current: number, size: number, line: string, slider: string) {
-    if (current > total) {
-        const bar = line.repeat(size + 2);
-        return bar;
-    } else {
-        const percentage = current / total;
-        const progress = Math.round((size * percentage));
-        const emptyProgress = size - progress;
-        const progressText = line.repeat(progress).replace(/.$/, slider);
-        const emptyProgressText = line.repeat(emptyProgress);
-        const bar = progressText + emptyProgressText;
-        return bar;
-    }
+export function progressBar(value: number, maxValue: number, size: number) {
+    const percentage = value / maxValue; // Calculate the percentage of the bar
+    const progress = Math.round(size * percentage); // Calculate the number of square caracters to fill the progress side.
+    const emptyProgress = size - progress; // Calculate the number of dash caracters to fill the empty progress side.
+
+    const progressText = "▇".repeat(progress); // Repeat is creating a string with progress * caracters in it
+    const emptyProgressText = "—".repeat(emptyProgress); // Repeat is creating a string with empty progress * caracters in it
+    const percentageText = Math.round(percentage * 100) + "%"; // Displaying the percentage of the bar
+
+    const Bar = progressText + emptyProgressText; // Creating the bar
+    return { Bar, percentageText };
 }
 
 /**
@@ -362,4 +359,14 @@ export function createMenu(array: string[]) {
         smenu: [select_menu],
         sid: id
     }
+}
+
+export async function randomId(length: number) {
+    var result           = '';
+    var characters       = 'abcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
 }

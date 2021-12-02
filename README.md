@@ -172,7 +172,7 @@ If you want to cancel adding command cooldown to user:
 
 ---
 
-## ❗Important
+## 👑 Credit
 
 -   This is modification discord bot template
     - [ts-discord-bot](https://github.com/BUR4KBEY/ts-discord-bot) Pure Code

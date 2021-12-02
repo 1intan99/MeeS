@@ -97,3 +97,6 @@ sw.*
 # Syncthing
 .stfolder/
 .stignore
+
+#Sumthing
+src/classes/EnvLoader.ts

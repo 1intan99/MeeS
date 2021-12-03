@@ -14,7 +14,8 @@ export default class Anime extends Command {
             description: 'Search anime',
             group: 'Info',
             cooldown: 5,
-            examples: ["anime Kimi No Nawa<Tittle>"]
+            examples: ["anime Kimi No Nawa<Tittle>"],
+            onlyNsfw: true
         })
     }
 

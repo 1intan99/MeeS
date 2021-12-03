@@ -10,7 +10,7 @@ export default class GiveawayEdit extends Command {
             description: "Edit The Giveaways",
             group: "Giveaways",
             examples: ["giveawayedit 12345678<messageId> 2<Winners> Nitro Classic<Prize>"],
-            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]}
+            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES", "SEND_MESSAGES"]}
         });
     }
 

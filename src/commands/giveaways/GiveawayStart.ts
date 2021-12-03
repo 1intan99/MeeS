@@ -12,7 +12,7 @@ export default class GiveawayStart extends Command {
             description: 'Start Giveaways',
             group: 'Giveaways',
             examples: ['giveawaystart #channel<TextChannel> 10h<Time> 2<Winners> Nitro<Prize ( You can use space at prize)>'],
-            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]}
+            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES", "SEND_MESSAGES"]}
         });
     }
 

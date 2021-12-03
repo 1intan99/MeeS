@@ -10,7 +10,7 @@ export default class GiveawayPause extends Command {
             description: "Pause the Giveaways",
             group: "Giveaways",
             examples: ['giveawaypause 12345678<MessageID>'],
-            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]}
+            require: { permissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES", "SEND_MESSAGES"]}
         });
     }
 

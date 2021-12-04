@@ -11,16 +11,6 @@ export default class CommandHandler {
     static async handleCommand(client: DiscordClient, message: Message) {
         const self = (message.guild as Guild).me as GuildMember;
         if (!self.permissions.has('SEND_MESSAGES') || !(message.channel as TextChannel).permissionsFor(self)?.has('SEND_MESSAGES')) return;
-        if (!self.permissions.has('ADMINISTRATOR'))
-            return await message.channel.send({
-                embeds: [
-                    {
-                        color: 'RED',
-                        title: '🚨 Missing Permission',
-                        description: `${message.author}, bot requires \`ADMINISTRATOR\` permission to be run.`
-                    }
-                ]
-            });
         
         const prefix = client.config.prefix;
         const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

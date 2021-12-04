@@ -17,7 +17,7 @@ export default class HelpCommand extends Command {
             name: 'help',
             group: 'Info',
             description: 'Shows information about commands and groups.',
-            cooldown: 30,
+            cooldown: 5,
             examples: ['help filter<Command Name>']
         });
     }
@@ -68,7 +68,7 @@ export default class HelpCommand extends Command {
 
         const command = this.client.registery.findCommand(args[0].toLocaleLowerCase());
         if (!command) return await this.sendHelpMessage(message, groups);
-        var isAvailable = false;
+        var isAvailable = true;
 
         groups.forEach(group => {
             if (group.commands.includes(command.info.name)) isAvailable = true;

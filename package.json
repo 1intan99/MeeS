@@ -10,7 +10,7 @@
     "start": "node -r dotenv ./build/index.js",
     "dev": "nodemon -w ./src -w ./.env ./src/index.ts",
     "postinstall": "tsc",
-    "starto": "node build/index.js"
+    "starto": "node build/start.js"
   },
   "engines": {
     "node": "16.x"

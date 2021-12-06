@@ -3,7 +3,6 @@ import CommandHandler from "../../classes/CommandHandler";
 import MeeS from "../../structures/Client";
 import Event from "../../structures/Event";
 import getUrls from "get-urls";
-import classify from "../../classes/NsfwJs.test";
 
 export default class MessageCreate extends Event {
     constructor(client: MeeS) {

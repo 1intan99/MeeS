@@ -1,3 +1,4 @@
+import { Album, Artist, SpotifyAlbum, SpotifyArtist } from '@ksoft/api';
 import { PermissionString } from 'discord.js';
 
 /**
@@ -99,4 +100,40 @@ export interface ICommandRequire {
      * Developers are not affected
      */
     permissions?: PermissionString[];
+}
+
+export interface YouTubeTrack {
+    id: string;
+    link: string;
+    title: string;
+    thumbnail: string;
+    description: string;
+}
+
+export interface Track {
+    name: string;
+    id: string;
+    artist?: Artist;
+    albums?: Album[];
+    lyrics: string;
+    url: string;
+}
+
+export interface SpotifyTrack {
+    id: string;
+    link: string;
+    title: string;
+    album: SpotifyAlbum;
+    artists: SpotifyArtist[];
+}
+
+export interface SpotifyArtis {
+    name: string;
+    link: string;
+}
+
+export interface SpotifyAlbu {
+    title: string;
+    link: string;
+    art: string;
 }

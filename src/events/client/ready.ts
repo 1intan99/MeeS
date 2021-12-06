@@ -1,4 +1,5 @@
 import Logger from '../../classes/Logger';
+import { init } from '../../classes/NsfwJs.test';
 import DiscordClient from '../../structures/Client';
 import Event from '../../structures/Event';
 

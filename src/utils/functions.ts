@@ -370,3 +370,23 @@ export async function randomId(length: number) {
     }
     return result;
 }
+
+export function fortmatNumber(number: number){
+    var SI_SYMBOL = ["", "K", "M", "B", "T", "Q"];
+
+
+    var tier = Math.log10(Math.abs(number)) / 3 | 0;
+
+
+    if(tier == 0) return number;
+
+
+    var suffix = SI_SYMBOL[tier];
+    var scale = Math.pow(10, tier * 3);
+
+
+    var scaled = number / scale;
+
+
+    return scaled.toFixed(1) + suffix;
+}

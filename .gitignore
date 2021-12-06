@@ -10,6 +10,7 @@ yarn-error.log*
 tsconfig.tsbuildinfo*
 giveaways.json
 guild.json
+src/**/*.test.ts
 
 # Runtime data
 pids

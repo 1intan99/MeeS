@@ -18,7 +18,9 @@
   "dependencies": {
     "@discordx/utilities": "^3.1.5",
     "@ksoft/api": "^3.1.9",
+    "@nsfw-filter/gif-frames": "^1.0.2",
     "@tensorflow/tfjs-node": "^3.11.0",
+    "@tensorflow/tfjs-node-gpu": "^3.11.0",
     "axios": "^0.24.0",
     "canvas": "^2.8.0",
     "canvas-constructor": "^5.0.1",
@@ -38,6 +40,8 @@
     "express-session": "^1.17.2",
     "format": "^0.2.2",
     "get-urls": "^10.0.1",
+    "is-image": "^3.0.0",
+    "is-url": "^1.2.4",
     "jsoning": "^0.12.22",
     "lavasfy": "^2.3.0",
     "lodash": "^4.17.21",
@@ -56,11 +60,13 @@
     "snekfetch": "^4.0.4",
     "socket.io": "^4.4.0",
     "superagent": "^6.1.0",
+    "then-request": "^6.0.2",
     "wikipedia": "^1.1.6"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/express-session": "^1.17.4",
+    "@types/is-url": "^1.2.30",
     "@types/lodash": "^4.14.177",
     "@types/moment-duration-format": "^2.2.3",
     "@types/ms": "^0.7.31",

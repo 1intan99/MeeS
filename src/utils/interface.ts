@@ -137,3 +137,8 @@ export interface SpotifyAlbu {
     link: string;
     art: string;
 }
+
+export interface nsfwjsOptions {
+    size?: number;
+    type?: string;
+}

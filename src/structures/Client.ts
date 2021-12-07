@@ -10,6 +10,7 @@ import { Manager } from "erela.js";
 import Logger from "../classes/Logger";
 import MongoDB from "./MongoClien";
 import Giveaways from "../classes/GiveawaysModel";
+import NSFWJS from "../classes/NsfwJs.test";
 
 export default class MeeS extends Client {
     readonly config: IConfig;
@@ -23,6 +24,7 @@ export default class MeeS extends Client {
     public giveaway: Giveaways;
     public mongo: MongoDB;
     public readonly logo: string;
+    readonly nsfwjs: NSFWJS;
 
     public constructor(intents: IntentsString[], silent: boolean) {
         super({ intents, botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)], silent})
@@ -49,5 +51,7 @@ export default class MeeS extends Client {
         this.together = new DiscordTogether(this);
         this.mongo = new MongoDB();
         this.logo = "https://cdn.discordapp.com/attachments/891235330735366164/891387071376269342/amelia_corp.png";
+        this.nsfwjs = new NSFWJS()
+        this.nsfwjs.init();
     }
 }

@@ -15,9 +15,9 @@ export default class TrackStart extends Lava {
     async run(player: Player, track: Track) {
             const channel = this.client.channels.cache.get(player.textChannel as string) as TextBasedChannels;
             const embed = new MessageEmbed()
-            .setDescription(`**Playing**\n [${track.title}](${track.uri}) - \`[${convertTime(track.duration)}]\` [${track.requester}]`)
+            .setDescription(`**Playing**\n [${track.title}](${track.uri}) - \`[${convertTime(track.duration)}]\` [${track.requester}]\nVolume: \`${player.volume}\`%\nQueue size: \`${player.queue.size}\``)
             .setTimestamp()
-            .setThumbnail(track.displayThumbnail("hqdefault") || "https://cdn.discordapp.com/attachments/891235330735366164/891387071376269342/amelia_corp.png")
+            .setImage(track.displayThumbnail("hqdefault") || "https://cdn.discordapp.com/attachments/891235330735366164/891387071376269342/amelia_corp.png")
             .setColor('GREEN')
             const msg = {
                 embeds: [embed],

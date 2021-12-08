@@ -20,6 +20,7 @@ export default class Stop extends Command {
         const player = this.client.manager?.players.get(message.guildId as string);
         if (!player) return message.channel.send(`There is no music play at this server!`);
         player.destroy();
-        return message.channel.send(`Music has stoped!`);
+        await message.react('✅')
+        return message.channel.send(`Music has been stoped!`);
     }
 }

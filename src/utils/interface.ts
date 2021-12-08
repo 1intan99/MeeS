@@ -1,6 +1,6 @@
 import { Album, Artist, SpotifyAlbum, SpotifyArtist } from '@ksoft/api';
 import { PermissionString } from 'discord.js';
-import { Category } from './nsfwjs';
+import { Category } from './nsfwjs.test';
 
 /**
  * Config interface for client.

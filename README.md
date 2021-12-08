@@ -15,6 +15,24 @@ Nao made by Nao#9774 focusing to be a multifunction discord bot and have many fe
 
 Nao bot still in development mode and will have a loot of features
 
+## 🎉 Giveaways Features
+Nao has a Giveaways command that can use for givewaying sumthing that you want to give to ppl for free
+ - Giveaways feature provide you to start giveaways to any discord text channel.
+ - You can set custom message when the someone win the giveaways.
+ - You can also edit the giveaways if there is a mistake that you didn't mean by mistake .
+ - You can also reroll the giveaways when the winners don't qualify.
+
+ ## 🎶 Music Features
+ Nao has a Music Features that can play music from SoundCloud, Spotify, YouTube, Radio Link
+- The music feature can play music directly from spotify.
+- Music feature that uses buttons for easy control and does not have to type commands to change songs, stop songs, or view song lists 
+- Support 24 hours without leaving the voice channel and this is set by default.
+
+## 📃Information Features
+Nao has Information Features that can use for searching sumthing like Wiki, Anime, And other stuff.
+- 
+
+
 ## 📜 Features
 - Giveaways
 - Music

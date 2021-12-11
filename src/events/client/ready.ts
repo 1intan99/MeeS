@@ -15,7 +15,6 @@ export default class ReadyEvent extends Event {
         await this.client.initApplicationPermissions();
         await this.client.manager?.init(this.client.user!.id);
         Logger.log('SUCCESS', `Logged in as "${this.client.user?.tag}".`);
-
         this.client.user?.setActivity("n!help", { type: 'PLAYING' });
     }
 }

@@ -28,10 +28,6 @@ Nao has a Giveaways command that can use for givewaying sumthing that you want t
 - Music feature that uses buttons for easy control and does not have to type commands to change songs, stop songs, or view song lists 
 - Support 24 hours without leaving the voice channel and this is set by default.
 
-## 📃Information Features
-Nao has Information Features that can use for searching sumthing like Wiki, Anime, And other stuff.
-- 
-
 
 ## 📜 Features
 - Giveaways

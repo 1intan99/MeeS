@@ -1,3 +1,5 @@
 import MeeS from "./structures/Client";
-const client: MeeS = new MeeS(['GUILDS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS'], true);
+import { cache, intenst, silent, ws } from "./utils/ClientOptions";
+
+const client: MeeS = new MeeS(intenst, silent, ws, cache);
 export default client;

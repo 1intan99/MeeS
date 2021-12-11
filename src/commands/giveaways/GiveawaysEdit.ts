@@ -22,19 +22,19 @@ export default class GiveawayEdit extends Command {
             const embed = new MessageEmbed()
             .setColor("RED")
             .setAuthor("❌ Error | Missing MessageID Arguments", this.client.logo)
-            .setDescription(`${this.client.prefix}giveawayedit <messageId> <winners> <prize>\nEx: ${this.client.prefix}giveawayedit 123456789 1 real cash`)
+            .setDescription(`${this.client.config.prefix}giveawayedit <messageId> <winners> <prize>\nEx: ${this.client.config.prefix}giveawayedit 123456789 1 real cash`)
             return message.channel.send({ embeds: [embed] });
         } else if (!winner) {
             const embed = new MessageEmbed()
             .setColor("RED")
             .setAuthor("❌ Error | Missing Winners Arguments", this.client.logo)
-            .setDescription(`${this.client.prefix}giveawayedit <messageId> <winners> <prize>\nEx: ${this.client.prefix}giveawayedit 123456789 1 real cash`)
+            .setDescription(`${this.client.config.prefix}giveawayedit <messageId> <winners> <prize>\nEx: ${this.client.config.prefix}giveawayedit 123456789 1 real cash`)
             return message.channel.send({ embeds: [embed] });
         } else if (!pri) {
             const embed = new MessageEmbed()
             .setColor("RED")
             .setAuthor("❌ Error | Missing Prize Arguments", this.client.logo)
-            .setDescription(`${this.client.prefix}giveawayedit <messageId> <winners> <prize>\nEx: ${this.client.prefix}giveawayedit 123456789 1 real cash`)
+            .setDescription(`${this.client.config.prefix}giveawayedit <messageId> <winners> <prize>\nEx: ${this.client.config.prefix}giveawayedit 123456789 1 real cash`)
             return message.channel.send({ embeds: [embed] });
         }
 

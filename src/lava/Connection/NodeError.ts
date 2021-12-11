@@ -2,6 +2,7 @@ import Lava from "../../structures/Lava";
 import MeeS from "../../structures/Client";
 import { Node } from "erela.js";
 import Logger from "../../classes/Logger";
+import SentryLogger from "../../classes/SentryLogger";
 
 export default class NodeError extends Lava {
     constructor(client: MeeS) {
@@ -10,7 +11,8 @@ export default class NodeError extends Lava {
         })
     }
 
-    async run(node: Node, reason: any) {
-        Logger.log(`ERROR`, reason.reason);
+    async run(node: Node, err: any) {
+        SentryLogger.getInstance().logger(err.reason)
+        Logger.log(`ERROR`, err.reason);
     }
 }

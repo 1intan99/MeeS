@@ -1,4 +1,4 @@
-import 'discord.js';
+import 'discord.jsz';
 
 declare module 'discord.js' {
     interface ClientEvents {

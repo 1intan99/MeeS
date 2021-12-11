@@ -26,7 +26,7 @@ export default class HelpCommand extends Command {
         const registry = this.client.registery;
         const groupKeys = registry.getAllGroupNames();
         const groups: IGroup[] = [];
-        const emo = { Info: "📃", Music: "🎵", Developer: "👑", Utility: "✨", Giveaways: "🎉"} as any
+        const emo = { Info: "📃", Music: "🎵", Developer: "👑", Utility: "✨", Giveaways: "🎉", Administrator: "🔒" } as any
 
         groupKeys.forEach(group => {
             const commandsInGroup = registry.findCommandsInGroup(group) as string[];
@@ -52,7 +52,7 @@ export default class HelpCommand extends Command {
             footer: {
                 text: `Type "${this.client.config.prefix}help [command-name]" for more information.`
             },
-            description: "✨Note: `Some command need permission to be show, like Giveaway Command and More`"
+            description: "✨Note: `Some command will not be able to see, cause user permission. So make sure you have the permissions to show the hidden command, or you can check my [Documentation]()`"
         });
         
         groups.forEach(group => {

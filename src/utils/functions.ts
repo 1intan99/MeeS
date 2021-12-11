@@ -1,4 +1,4 @@
-import { CommandInteraction, Message, MessageActionRow, MessageButton, MessageComponentInteraction, MessageEmbed, MessageSelectMenu } from 'discord.js';
+import { CommandInteraction, MessageActionRow, MessageButton, MessageComponentInteraction, MessageEmbed, MessageSelectMenu, SnowflakeUtil } from 'discord.js';
 import 'moment-duration-format';
 
 import moment from 'moment-timezone';
@@ -427,4 +427,8 @@ export function formatBytes(bytes:number): string {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     const i = Math.floor(Math.log(bytes) / Math.log(1024))
     return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(2))} ${sizes[i]}`
+}
+
+export function channelFilter(channel: any) {
+    return !channel.lastMessageId || SnowflakeUtil.deconstruct(channel.lastMessageId).timestamp < Date.now() - 3600000;
 }

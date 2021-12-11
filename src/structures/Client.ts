@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { IntentsString } from "discord.js";
+import { IntentsString, WebSocketOptions, CacheFactory } from "discord.js";
 import { Client } from "discordx";
 import { DiscordTogether } from "discord-together";
 import { ICache, IConfig } from "../utils/interface";
@@ -10,6 +10,7 @@ import { Manager } from "erela.js";
 import Logger from "../classes/Logger";
 import MongoDB from "./MongoClien";
 import Giveaways from "../classes/GiveawaysModel";
+import SentryLogger from "../classes/SentryLogger";
 
 
 export default class MeeS extends Client {
@@ -24,9 +25,10 @@ export default class MeeS extends Client {
     public giveaway: Giveaways;
     public mongo: MongoDB;
     public readonly logo: string;
+    public sentry: SentryLogger;
 
-    public constructor(intents: IntentsString[], silent: boolean) {
-        super({ intents, botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)], silent})
+    public constructor(intents: IntentsString[], silent: boolean, ws: WebSocketOptions, makeCache: CacheFactory) {
+        super({ intents, botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)], silent, ws, makeCache})
         
         this.config = {
             token: process.env.TOKEN as string,
@@ -42,6 +44,7 @@ export default class MeeS extends Client {
                 reaction: '🎊'
             }
         });
+        this.sentry = new SentryLogger(process.env.DSN as string);
         this.erela = new Erela(this);
         this.erela.connect();
         this.registery = new Registry(this);

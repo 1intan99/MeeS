@@ -1,5 +1,5 @@
-import { CommandInteraction, GuildMember, Interaction, Message, MessageEmbed } from 'discord.js';
-import { Discord, Slash, SlashGroup, SlashOption, ButtonComponent } from "discordx";
+import { CommandInteraction, GuildMember, Message, MessageEmbed } from 'discord.js';
+import { Discord, Slash, SlashOption } from "discordx";
 import { TrackUtils } from 'erela.js';
 import { LavalinkTrack } from 'lavasfy';
 import Logger from '../../../classes/Logger';

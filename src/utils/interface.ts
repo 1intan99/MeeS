@@ -1,6 +1,6 @@
 import { Album, Artist, SpotifyAlbum, SpotifyArtist } from '@ksoft/api';
 import { PermissionString } from 'discord.js';
-// import { Category } from './nsfwjs.test';
+import { Category } from './nsfwjs';
 
 /**
  * Config interface for client.
@@ -103,8 +103,8 @@ export interface ICommandRequire {
     permissions?: PermissionString[];
 }
 
-// export interface ClassificationResult {
-//     source: string;
-//     category: Category[];
-//     time?: number;
-// }
+export interface ClassificationResult {
+    source: string;
+    category: Category[];
+    time?: number;
+}

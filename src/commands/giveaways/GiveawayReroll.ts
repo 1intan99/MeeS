@@ -21,7 +21,7 @@ export default class GiveawayReroll extends Command {
             const embed = new MessageEmbed()
             .setColor("RED")
             .setAuthor("❌ Error | Missing Arguments", this.client.logo)
-            .setDescription(`${this.client.prefix}giveawayreroll <messageId>\nEx: ${this.client.prefix}giveawayreroll 123456789`)
+            .setDescription(`${this.client.config.prefix}giveawayreroll <messageId>\nEx: ${this.client.config.prefix}giveawayreroll 123456789`)
             return message.channel.send({ embeds: [embed] });
         }
 

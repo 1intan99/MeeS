@@ -2,7 +2,7 @@ import Lava from "../../structures/Lava";
 import MeeS from "../../structures/Client";
 import { Player, Track } from "erela.js";
 import { Message, MessageEmbed, TextBasedChannels } from "discord.js";
-import { button, convertTime, progressBar } from "../../utils/functions";
+import { button, convertTime } from "../../utils/functions";
 
 export default class TrackStart extends Lava {
     lastControlMessage: Message | undefined

@@ -5,10 +5,6 @@ import moment from 'moment-timezone';
 import MeeS from '../structures/Client';
 import request from 'request';
 import load from 'lodash';
-import req from "then-request";
-import isImage from "is-image";
-import isUrl from "is-url";
-import { parse } from "url"
 
 import DiscordClient from '../structures/Client';
 import Logger from '../classes/Logger';
@@ -393,33 +389,6 @@ export function fortmatNumber(number: number){
 
 
     return scaled.toFixed(1) + suffix;
-}
-
-export function isImageUrl(url: string, accurate?: any, timeout?: number) {
-    if (!url) return;
-    const http = url.lastIndexOf('http');
-    if (http != -1) url = url.substring(http);
-    if (!isUrl(url)) return isImage(url);
-    let pathname = parse(url).pathname;
-    if (!pathname) return false;
-    const last = pathname.search(/[:?&]/);
-    if (last != -1) pathname = pathname.substring(0, last);
-    if (isImage(pathname)) return true;
-    if (/styles/i.test(pathname)) return false;
-
-    try  {
-        if (!accurate) return false;
-        if (!timeout) timeout = 60000;
-        const res: any = req('GET', url, { timeout });
-        if (!res) return false;
-        const headers = res.headers;
-        if (!headers) return false;
-        const contentType = headers['content-type'];
-        if (!contentType) return false;
-        return contentType.search(/^image\//) != -1;
-    } catch (errr) {
-        return false;
-    }
 }
 
 export function formatBytes(bytes:number): string {

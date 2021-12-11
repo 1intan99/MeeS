@@ -1,6 +1,5 @@
 import { Message, TextChannel } from "discord.js";
 import CommandHandler from "../../classes/CommandHandler";
-import NsfwjsHandler from "../../classes/NsfwjsHandler";
 import MeeS from "../../structures/Client";
 import Event from "../../structures/Event";
 
@@ -13,7 +12,6 @@ export default class MessageCreate extends Event {
         if (message.author.bot || message.channel.type == "DM") return;
         try {
             await CommandHandler.handleCommand(this.client, message);
-            await NsfwjsHandler.nsfwHandler(message, this.client);
             this.client.executeCommand(message);
         } catch (err: any) {
             console.log(err.stack);

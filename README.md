@@ -35,3 +35,7 @@ Nao has a Giveaways command that can use for givewaying sumthing that you want t
 - Information
 - Utility
 - Slash Command
+
+
+## 📈 Project Stats
+![Alt](https://repobeats.axiom.co/api/embed/971ab922820e7ad4f502fd9e483a919f58a89204.svg "Repobeats analytics image")

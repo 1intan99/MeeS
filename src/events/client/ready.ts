@@ -9,7 +9,6 @@ export default class ReadyEvent extends Event {
 
     async run() {
         this.client.initApplicationCommands({
-            guild: { log: false },
             global: { log: false }
         });
         await this.client.initApplicationPermissions();

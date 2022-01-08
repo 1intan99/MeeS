@@ -14,44 +14,35 @@ import SentryLogger from "../classes/SentryLogger";
 
 
 export default class MeeS extends Client {
-    readonly config: IConfig;
-    readonly registery: Registry;
-    readonly erela: Erela;
+    readonly config: IConfig = {
+        token: process.env.TOKEN as string,
+        prefix: process.env.PREFIX as string,
+        developers: JSON.parse(process.env.DEVELOPERS as string) as string[],
+        unknownErrorMessage: JSON.parse(process.env.UNKNOWN_COMMAND_ERROR as string)
+    };
+    readonly registery = new Registry(this);
+    readonly erela = new Erela(this);
     public manager: Manager | undefined;
-    public cache: Map<string, ICache>;
-    public together: DiscordTogether<{[x: string]: string}>;
+    public cache: Map<string, ICache> = new Map();
+    public together: DiscordTogether<{[x: string]: string}> = new DiscordTogether(this);
     public lavasfy: LavasfyClient | undefined;
     public log: Logger | undefined;
-    public giveaway: Giveaways;
-    public mongo: MongoDB;
-    public readonly logo: string;
-    public sentry: SentryLogger;
+    public giveaway = new Giveaways(this, {
+        default: {
+            botsCanWin: false,
+            embedColor: 'GREEN',
+            embedColorEnd: 'RED',
+            reaction: '🎊'
+        }
+    });
+    public mongo = new MongoDB;
+    public readonly logo = "https://cdn.discordapp.com/attachments/891235330735366164/891387071376269342/amelia_corp.png";
+    public sentry = new SentryLogger(process.env.DSN as string);
 
     public constructor(intents: IntentsString[], silent: boolean, ws: WebSocketOptions, makeCache: CacheFactory) {
-        super({ intents, botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)], silent, ws, makeCache})
-        
-        this.config = {
-            token: process.env.TOKEN as string,
-            prefix: process.env.PREFIX as string,
-            developers: JSON.parse(process.env.DEVELOPERS as string) as string[],
-            unknownErrorMessage: JSON.parse(process.env.UNKNOWN_COMMAND_ERROR as string)
-        };
-        this.giveaway = new Giveaways(this, {
-            default: {
-                botsCanWin: false,
-                embedColor: 'GREEN',
-                embedColorEnd: 'RED',
-                reaction: '🎊'
-            }
-        });
-        this.sentry = new SentryLogger(process.env.DSN as string);
-        this.erela = new Erela(this);
+        super({ intents, botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)], silent, ws, makeCache});
+
         this.erela.connect();
-        this.registery = new Registry(this);
         this.registery.reregisterAll();
-        this.cache = new Map();
-        this.together = new DiscordTogether(this);
-        this.mongo = new MongoDB();
-        this.logo = "https://cdn.discordapp.com/attachments/891235330735366164/891387071376269342/amelia_corp.png";
     }
 }

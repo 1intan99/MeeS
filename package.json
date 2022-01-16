@@ -16,7 +16,7 @@
     "node": "16.x"
   },
   "dependencies": {
-    "@discordx/utilities": "^3.1.5",
+    "@discordx/utilities": "^3.1.8",
     "@ksoft/api": "^3.1.9",
     "@sentry/node": "^6.16.1",
     "@tensorflow/tfjs-node": "^3.12.0",
